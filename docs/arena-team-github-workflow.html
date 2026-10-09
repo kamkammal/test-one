@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Arena AI Workspace · GitHub Team Workflow</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 32px 16px 48px;
+    background: #F1F5F9;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1E293B;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  h1 { font-size: 26px; margin: 0 0 4px; }
+  .sub { color: #64748B; font-size: 14px; margin: 0 0 20px; }
+  .card {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+  }
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 18px;
+    margin-top: 16px; padding: 12px 16px;
+    background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px;
+    font-size: 13px; color: #475569; align-items: center;
+  }
+  .legend .item { display: flex; align-items: center; gap: 8px; }
+  .rules { margin-top: 16px; padding: 16px 20px; background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 12px; }
+  .rules h2 { font-size: 14px; margin: 0 0 8px; color: #92400E; text-transform: uppercase; letter-spacing: .06em; }
+  .rules ul { margin: 0; padding-left: 20px; font-size: 13.5px; line-height: 1.55; color: #78350F; }
+  code { background: #F1F5F9; padding: 1px 5px; border-radius: 4px; font-size: 12.5px; }
+  svg { width: 100%; height: auto; display: block; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Arena AI Workspace · GitHub Team Workflow</h1>
+  <p class="sub">From starting a conversation to creating a pull request — with the exact prompt to paste at each step. GitHub is the single source of truth; each member works in their own Arena session.</p>
+
+  <div class="card">
+    <svg viewBox="0 0 1060 1660" role="img" aria-label="Sequence diagram of the team workflow with prompts">
+      <defs>
+        <marker id="arrowPush" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#4F46E5"/>
+        </marker>
+        <marker id="arrowPull" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#0284C7"/>
+        </marker>
+      </defs>
+
+      <!-- ===== Lane headers ===== -->
+      <rect x="30"  y="16" width="280" height="54" rx="10" fill="#EEF2FF" stroke="#6366F1" stroke-width="1.5"/>
+      <text x="170" y="38" text-anchor="middle" font-size="14" font-weight="700" fill="#3730A3">Arena AI workspace</text>
+      <text x="170" y="56" text-anchor="middle" font-size="11" fill="#6366F1">one session per member (isolated sandboxes)</text>
+
+      <rect x="390" y="16" width="280" height="54" rx="10" fill="#F0FDF4" stroke="#22C55E" stroke-width="1.5"/>
+      <text x="530" y="38" text-anchor="middle" font-size="14" font-weight="700" fill="#166534">GitHub repository</text>
+      <text x="530" y="56" text-anchor="middle" font-size="11" fill="#16A34A">single source of truth · protected main</text>
+
+      <rect x="750" y="16" width="280" height="54" rx="10" fill="#FFF7ED" stroke="#F97316" stroke-width="1.5"/>
+      <text x="890" y="38" text-anchor="middle" font-size="14" font-weight="700" fill="#9A3412">GitHub Desktop</text>
+      <text x="890" y="56" text-anchor="middle" font-size="11" fill="#EA580C">each member's PC · visualize only</text>
+
+      <!-- ===== Lifelines ===== -->
+      <line x1="170" y1="70" x2="170" y2="1630" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="4 5"/>
+      <line x1="530" y1="70" x2="530" y2="1630" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="4 5"/>
+      <line x1="890" y1="70" x2="890" y2="1630" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="4 5"/>
+
+      <!-- ===== PHASE 1 ===== -->
+      <rect x="20" y="88" width="1020" height="28" rx="8" fill="#E2E8F0"/>
+      <text x="34" y="107" font-size="12" font-weight="700" letter-spacing="1.5" fill="#334155">1 · ONE-TIME SETUP — done in GitHub's UI, no prompt needed</text>
+
+      <rect x="60" y="128" width="220" height="64" rx="10" fill="#FFFFFF" stroke="#6366F1" stroke-width="1.5"/>
+      <text x="170" y="150" text-anchor="middle" font-size="12.5" font-weight="700" fill="#3730A3">Each member, in a browser</text>
+      <text x="170" y="168" text-anchor="middle" font-size="10.5" fill="#475569">① gets access to the repo</text>
+      <text x="170" y="183" text-anchor="middle" font-size="10.5" fill="#475569">② generates their own fine-grained PAT</text>
+
+      <rect x="420" y="128" width="220" height="64" rx="10" fill="#FFFFFF" stroke="#22C55E" stroke-width="1.5"/>
+      <text x="530" y="152" text-anchor="middle" font-size="13.5" font-weight="700" fill="#166534">Create the shared repository</text>
+      <text x="530" y="171" text-anchor="middle" font-size="11" fill="#475569">protect main · agree branch naming</text>
+
+      <rect x="20" y="206" width="1020" height="44" rx="10" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.2"/>
+      <text x="530" y="233" text-anchor="middle" font-size="12.5" fill="#92400E">🔑 Every member creates their own fine-grained PAT — this repo only, Contents: Read &amp; write, short expiry. Never share tokens between sessions.</text>
+
+      <!-- ===== PHASE 2 ===== -->
+      <rect x="20" y="268" width="1020" height="28" rx="8" fill="#E2E8F0"/>
+      <text x="34" y="287" font-size="12" font-weight="700" letter-spacing="1.5" fill="#334155">2 · START A CONVERSATION (every new session)</text>
+
+      <rect x="60" y="308" width="220" height="58" rx="10" fill="#FFFFFF" stroke="#6366F1" stroke-width="1.5"/>
+      <text x="170" y="331" text-anchor="middle" font-size="13.5" font-weight="700" fill="#3730A3">Start Arena conversation</text>
+      <text x="170" y="350" text-anchor="middle" font-size="11" fill="#475569">paste your OWN token, in your session only</text>
+
+      <line x1="170" y1="396" x2="530" y2="396" stroke="#0284C7" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arrowPull)"/>
+      <text x="350" y="387" text-anchor="middle" font-size="12" font-weight="600" fill="#0369A1">clone / pull latest main</text>
+
+      <rect x="60" y="420" width="220" height="66" rx="10" fill="#FFFFFF" stroke="#6366F1" stroke-width="1.5"/>
+      <text x="170" y="443" text-anchor="middle" font-size="13.5" font-weight="700" fill="#3730A3">Agent re-adds the remote</text>
+      <text x="170" y="460" text-anchor="middle" font-size="10.5" fill="#475569">(.git/config doesn't persist between sessions)</text>
+      <text x="170" y="476" text-anchor="middle" font-size="11" fill="#475569">checks out feature/&lt;name&gt;-&lt;topic&gt;</text>
+
+      <!-- Prompt: session start -->
+      <rect x="20" y="502" width="1020" height="124" rx="12" fill="#F5F3FF" stroke="#8B5CF6" stroke-width="1.5"/>
+      <text x="40" y="526" font-size="11" font-weight="700" letter-spacing="1.2" fill="#6D28D9">💬 PROMPT · SESSION START — your first message in every new Arena conversation</text>
+      <text x="40" y="550" font-size="11.5" fill="#4C1D95" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">Clone https://github.com/OWNER/REPO.git into the workspace and pull the latest main.</text>
+      <text x="40" y="568" font-size="11.5" fill="#4C1D95" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">Here is my fine-grained PAT (this repo only, Contents: read &amp; write): &lt;PASTE_TOKEN_HERE&gt;</text>
+      <text x="40" y="586" font-size="11.5" fill="#4C1D95" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">Configure git (user.name "YOUR NAME", user.email "YOUR@EMAIL"), re-add the remote with the token,</text>
+      <text x="40" y="604" font-size="11.5" fill="#4C1D95" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">then check out my branch feature/&lt;name&gt;-&lt;topic&gt; — create it from main if it doesn't exist yet.</text>
+
+      <!-- ===== PHASE 3 ===== -->
+      <rect x="20" y="648" width="1020" height="28" rx="8" fill="#E2E8F0"/>
+      <text x="34" y="667" font-size="12" font-weight="700" letter-spacing="1.5" fill="#334155">3 · WORK LOOP (inside the sandbox)</text>
+
+      <rect x="46" y="690" width="248" height="140" rx="12" fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="5 5"/>
+      <text x="58" y="708" font-size="11" font-style="italic" fill="#64748B">⟳ repeat per task</text>
+
+      <rect x="60" y="718" width="220" height="46" rx="10" fill="#FFFFFF" stroke="#6366F1" stroke-width="1.5"/>
+      <text x="170" y="746" text-anchor="middle" font-size="12.5" font-weight="700" fill="#3730A3">Instruct → agent edits scripts</text>
+
+      <rect x="60" y="776" width="220" height="38" rx="10" fill="#FFFFFF" stroke="#6366F1" stroke-width="1.5"/>
+      <text x="170" y="800" text-anchor="middle" font-size="12.5" font-weight="700" fill="#3730A3">Agent commits in the sandbox</text>
+
+      <!-- Prompt: work loop -->
+      <rect x="20" y="846" width="1020" height="90" rx="12" fill="#F5F3FF" stroke="#8B5CF6" stroke-width="1.5"/>
+      <text x="40" y="870" font-size="11" font-weight="700" letter-spacing="1.2" fill="#6D28D9">💬 PROMPT · WORK LOOP — for each change you request</text>
+      <text x="40" y="894" font-size="11.5" fill="#4C1D95" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">In scripts/&lt;file&gt;.py, update &lt;what&gt; so that &lt;goal&gt;. Don't touch unrelated code — when done,</text>
+      <text x="40" y="912" font-size="11.5" fill="#4C1D95" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">commit the change with a clear message and show me the diff.</text>
+
+      <!-- ===== PHASE 4 ===== -->
+      <rect x="20" y="956" width="1020" height="28" rx="8" fill="#E2E8F0"/>
+      <text x="34" y="975" font-size="12" font-weight="700" letter-spacing="1.5" fill="#334155">4 · PUSH &amp; PULL REQUEST</text>
+
+      <line x1="170" y1="1024" x2="530" y2="1024" stroke="#4F46E5" stroke-width="2.5" marker-end="url(#arrowPush)"/>
+      <text x="350" y="1015" text-anchor="middle" font-size="12" font-weight="600" fill="#4338CA">push branch (authenticated with your token)</text>
+
+      <rect x="420" y="1048" width="220" height="56" rx="10" fill="#FFFFFF" stroke="#22C55E" stroke-width="1.5"/>
+      <text x="530" y="1071" text-anchor="middle" font-size="13.5" font-weight="700" fill="#166534">Open a pull request</text>
+      <text x="530" y="1089" text-anchor="middle" font-size="11" fill="#475569">feature/&lt;name&gt;-&lt;topic&gt; → main</text>
+
+      <rect x="420" y="1118" width="220" height="56" rx="10" fill="#FFFFFF" stroke="#22C55E" stroke-width="1.5"/>
+      <text x="530" y="1141" text-anchor="middle" font-size="13.5" font-weight="700" fill="#166534">Review diff · resolve conflicts</text>
+      <text x="530" y="1159" text-anchor="middle" font-size="11" fill="#475569">you merge when it's clean</text>
+
+      <!-- Prompt: push & PR -->
+      <rect x="20" y="1190" width="1020" height="96" rx="12" fill="#F5F3FF" stroke="#8B5CF6" stroke-width="1.5"/>
+      <text x="40" y="1214" font-size="11" font-weight="700" letter-spacing="1.2" fill="#6D28D9">💬 PROMPT · PUSH &amp; OPEN THE PR</text>
+      <text x="40" y="1238" font-size="11.5" fill="#4C1D95" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">Commit anything outstanding and push my branch feature/&lt;name&gt;-&lt;topic&gt; to GitHub.</text>
+      <text x="40" y="1262" font-size="11.5" fill="#8B5CF6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"># then on github.com (UI, no prompt): Compare &amp; pull request → Create pull request</text>
+
+      <!-- ===== PHASE 5 ===== -->
+      <rect x="20" y="1306" width="1020" height="28" rx="8" fill="#E2E8F0"/>
+      <text x="34" y="1325" font-size="12" font-weight="700" letter-spacing="1.5" fill="#334155">5 · SYNC &amp; VISUALIZE</text>
+
+      <line x1="530" y1="1372" x2="890" y2="1372" stroke="#0284C7" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arrowPull)"/>
+      <text x="710" y="1363" text-anchor="middle" font-size="12" font-weight="600" fill="#0369A1">pull updated main</text>
+
+      <rect x="780" y="1396" width="220" height="62" rx="10" fill="#FFFFFF" stroke="#F97316" stroke-width="1.5"/>
+      <text x="890" y="1420" text-anchor="middle" font-size="13.5" font-weight="700" fill="#9A3412">Visualize history &amp; diffs</text>
+      <text x="890" y="1438" text-anchor="middle" font-size="11" fill="#475569">normal sign-in — no token needed</text>
+
+      <line x1="530" y1="1490" x2="170" y2="1490" stroke="#0284C7" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arrowPull)"/>
+      <text x="350" y="1481" text-anchor="middle" font-size="12" font-weight="600" fill="#0369A1">everyone else pulls main into their next session</text>
+
+      <!-- Prompt: stay in sync -->
+      <rect x="20" y="1514" width="1020" height="96" rx="12" fill="#F5F3FF" stroke="#8B5CF6" stroke-width="1.5"/>
+      <text x="40" y="1538" font-size="11" font-weight="700" letter-spacing="1.2" fill="#6D28D9">💬 PROMPT · STAY IN SYNC</text>
+      <text x="40" y="1562" font-size="11.5" fill="#4C1D95" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">Pull the latest main into my workspace and summarize what changed since my branch.</text>
+      <text x="40" y="1586" font-size="11.5" fill="#8B5CF6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"># GitHub Desktop users: click Fetch / Pull instead — no prompt needed</text>
+    </svg>
+
+    <div class="legend">
+      <div class="item">
+        <svg width="46" height="10" viewBox="0 0 46 10"><line x1="1" y1="5" x2="45" y2="5" stroke="#4F46E5" stroke-width="2.5"/></svg>
+        Push — writes to GitHub (needs the member's own token)
+      </div>
+      <div class="item">
+        <svg width="46" height="10" viewBox="0 0 46 10"><line x1="1" y1="5" x2="45" y2="5" stroke="#0284C7" stroke-width="2" stroke-dasharray="6 4"/></svg>
+        Pull / clone — reads from GitHub (token-free if the repo is public)
+      </div>
+      <div class="item">
+        <svg width="18" height="14" viewBox="0 0 18 14"><rect x="1" y="1" width="16" height="12" rx="4" fill="#F5F3FF" stroke="#8B5CF6" stroke-width="1.5"/></svg>
+        Copy-paste prompt for your Arena conversation
+      </div>
+    </div>
+  </div>
+
+  <div class="rules">
+    <h2>Golden rules</h2>
+    <ul>
+      <li><strong>GitHub is the single source of truth.</strong> Arena conversations are isolated sandboxes — nothing syncs between sessions except through the repo.</li>
+      <li><strong>Pull before starting work; push early and often</strong> so conflicts stay small and easy to resolve in the PR.</li>
+      <li><strong>One token per person, never shared.</strong> The session-start prompt re-adds the remote every time, because <code>.git/config</code> doesn't persist between Arena sessions.</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
