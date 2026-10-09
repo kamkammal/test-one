@@ -19,8 +19,14 @@ visualize history and diffs.
 2. **Create your OWN fine-grained Personal Access Token:**
    GitHub → *Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token*
    - Repository access: **this repo only**
-   - Permissions → Contents: **Read and write**
+   - Permissions → Contents: **Read and write** ⚠️ *critical — see below*
    - Expiry: short (e.g. 30 days)
+
+   > [!IMPORTANT]
+   > **Contents must be "Read and write", not "Read-only".** A read-only token still lets the
+   > agent clone and pull (reads), so setup *looks* fine — but every push fails with
+   > `Permission to <repo> denied to <user>` / `Resource not accessible by personal access token`.
+   > This is the most common setup mistake; the fix is under *Troubleshooting* (no new token needed).
 
    > [!WARNING]
    > Never share your token — not in chat, not in another member's Arena session.
@@ -94,6 +100,7 @@ Pull the latest main into my workspace and summarize what changed since my branc
 |---|---|
 | Token expired | Regenerate it on github.com with the same scopes and paste the new one into your session-start prompt |
 | `Repository not found` / auth errors | Re-send the session-start prompt — it re-adds the remote with your token |
+| Push fails: `Permission to … denied to <you>` or `Resource not accessible by personal access token` | Your token is read-only. Edit it on github.com: Fine-grained tokens → your token → **Edit** → Contents: **Read and write**. Editing keeps the same token — then just re-send the push prompt |
 | Merge conflict | Ask the agent: *"Pull main into my branch and help me resolve the conflicts"* |
 
 ---
